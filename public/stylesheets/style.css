@@ -88,6 +88,7 @@ p{
 .test{
 	background-color: rgba(0,0,0,0.60);
 	height: 100%;
+	overflow-y: scroll;
 }
 
 .createnew{
@@ -235,8 +236,9 @@ p{
 	bottom: 0px;
 	background-size: cover;
 	z-index: -1;
-	overflow-y: scroll;
 }
+
+
 
 /* Fixes */
 
