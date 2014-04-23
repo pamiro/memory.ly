@@ -21,7 +21,6 @@ body{
 
 
 
-
 /* 2. Text styles */
 
 p{font-family: 'Lato', 'sans-serif'; padding: 0px; margin: 0px;}
@@ -36,7 +35,7 @@ p{font-family: 'Lato', 'sans-serif'; padding: 0px; margin: 0px;}
 .memorysubtitle a:hover{color: #e5e5e5;}
 
 /* Homepage */
-.welcome .adress{font-weight: 900; color: #eaeaea; font-size: 25pt; margin-top: 10px;}
+.welcome .adress{font-weight: 900; color: #232323; font-size: 25pt; margin-top: 10px; display: inline; margin-left: 10px;}
 .createnew{font-weight: 900; color: #ffffff; font-size: 25pt; display: inline;}
 /* Inputfield */
 	.newmemory{
@@ -51,7 +50,7 @@ p{font-family: 'Lato', 'sans-serif'; padding: 0px; margin: 0px;}
 		color: #232323;
 		font-size: 25pt;
 		display: inline;
-		max-width: 300px;
+		max-width: 330px;
 		text-align: right;
 	}
 
@@ -97,6 +96,17 @@ p{font-family: 'Lato', 'sans-serif'; padding: 0px; margin: 0px;}
 
 .twitterprofile img{width: 50px; height: 50px; -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px; float: left; margin-right: 10px;}
 
+.blackbox{
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+ -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 20px;}
+
 
 
 /* Buttons */
@@ -116,15 +126,16 @@ p{font-family: 'Lato', 'sans-serif'; padding: 0px; margin: 0px;}
 .topbutton:hover{background-color: #535353;}
 
 .actionbutton{
-	background-color: rgba(255,255,255,0.44);
+	background-color: #007eff;
 	padding: 20px;
 	font-family: 'Lato', 'sans-serif';
 	font-weight: 600;
-	border: 1px solid #323232;
+	border: 0px;
 	color: white;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	margin-top: 25px;
 }
 .actionbutton:hover{ background-color: rgba(255,255,255,0.8);}
 
