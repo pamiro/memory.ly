@@ -8,18 +8,24 @@ var randomstring = require("randomstring");
 
 var memorySchema = new Schema({
 	name: 			{ type: String, required: true },
+	admin:  		{ type: String, required: true }
 });
 
-memorySchema.statics.create = function(callback) {
+memorySchema.statics.create = function(memoryName, callback) {
 
-	var memoryName = randomstring.generate(7);
+	if(!memoryName) {
+		memoryName = randomstring.generate(7);
+	}
+
+	var adminKey = randomstring.generate();
 
 	this.findOne({ name: new RegExp('^'+memoryName+'$', "i") }, function(error, memory) {
 		if(error) {
 			callback(error);
 		} else if(!memory) {
 			var newMemory = new Memory({
-				name: memoryName
+				name: memoryName,
+				admin: adminKey
 			});
 			newMemory.save(callback);
 		} else {

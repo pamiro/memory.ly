@@ -4,19 +4,35 @@
  */
 
 var Memory = require('../models').Memory;
+var Storage = require('../models').Storage;
 
 exports.index = function(req, res){
 	res.render('index');
 };
 
+exports.demo = function(req, res){
+	res.render('demo');
+};
+
+exports.postDemo = function(req, res){
+	Storage.create(req.body.memory, req.body.type, req.body.data, function(error, item) {
+		if(error) {
+			res.json({ error: error });
+		} else if(item) {
+			res.redirect('/' + req.body.memory);
+		}
+	});
+
+};
+
 exports.create = function(req, res){
 	// TODO: Create storage
 	// TODO: Display
-	Memory.create(function(error, memory) {
+	Memory.create(req.body.memory, function(error, memory) {
 		if(error) {
 			res.redirect('/');
 		} else if(memory) {
-			res.redirect('/' + memory.name);
+			res.render('success', { name: memory.name });
 		}
 	});
 
@@ -32,25 +48,13 @@ exports.list = function(req, res) {
 	});
 }
 
-exports.memory = function(req, res){
-	// TODO: Create storage
-	// TODO: Display
-	Memory.create(function(error, memory) {
-		if(error) {
-			res.redirect('/');
-		} else if(memory) {
-			res.redirect('/' + memory.name);
-		}
-	});
-
-};
-
 exports.view = function(req, res){
 	if(!req.params.memory) {
 		res.json({ error: "Wrong call" });
 	} else {
-		res.render('view', { memory: req.params.memory });
-	} 
 
-	res.render('index');
+		Storage.listAllItemsForMemory(req.params.memory, function(error, items) {
+			res.render('view', { memory: req.params.memory, items: items });
+		});
+	} 
 };

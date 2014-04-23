@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	h1 memory.ly
+	p Share your memories
+		form(action='/demo', method='post')
+			div
+				span Memory: 
+				input(type="text", value="test", name='memory')
+			div
+				span Type: 
+				input(type="text", value="picture", name='type')
+			div
+				span Data: 
+				input(type="text", value="http://tippvet.com/wp-content/uploads/2013/05/cat-vet-300x225.jpg", name='data')
+			div
+				input(type='submit', value='Save')

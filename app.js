@@ -34,6 +34,8 @@ app.use(express.session({	secret: config.http.cookie_secret,
 app.get('/', routes.index);
 app.post('/create', routes.create);
 app.get('/list', routes.list);
+app.get('/demo', routes.demo);
+app.post('/demo', routes.postDemo);
 app.get('/:memory', routes.view);
 
 http.createServer(app).listen(app.get('port'), function(){
