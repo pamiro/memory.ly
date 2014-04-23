@@ -1,0 +1,14 @@
+<% layout('layout') -%>
+    <h1>memory.ly</h1>
+
+    <p>Share your memories</p>
+
+    <form action="/create" method="post">
+        <div>
+            <input name="memory" placeholder="optional name" type="text">
+        </div>
+
+        <div>
+            <input type="submit" value="Create">
+        </div>
+    </form>

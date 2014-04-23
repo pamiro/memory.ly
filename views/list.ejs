@@ -1,0 +1,11 @@
+<% layout('layout') -%>
+
+    <h1>memory.ly</h1>
+
+    <p>All recent memories</p>
+
+    <ul>
+    <% for(var i=0; i<memories.length; i++) {%>
+        <li><a href="/<%= memories[i].name %>"><%= memories[i].name %></a></li>
+	<% } %>
+    </ul>

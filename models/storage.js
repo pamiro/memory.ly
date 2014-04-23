@@ -5,6 +5,7 @@ var db = require('./db').getConnection();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Client = require('node-rest-client').Client;
+var restClient = new Client();
 
 var storageSchema = new Schema({
 	memory: 		{ type: String, required: true },
@@ -14,19 +15,25 @@ var storageSchema = new Schema({
 
 storageSchema.statics.listAllItemsForMemory = function(memory, callback) {
 
-	if(!memory) {
-		throw new Error('No memory provided');
-	}
+	// if(!memory) {
+	// 	throw new Error('No memory provided');
+	// }
 
-	this.find({ memory: memory }, function(error, items) {
-		if(error) {
-			callback(error);
-		} else if(items) {
-			callback(null, items);
-		} else {
-			callback('Unknown error');
-		}
-	})
+	// this.find({ memory: memory }, function(error, items) {
+	// 	if(error) {
+	// 		callback(error);
+	// 	} else if(items) {
+	// 		callback(null, items);
+	// 	} else {
+	// 		callback('Unknown error');
+	// 	}
+	// })
+
+	restClient.get("http://212.71.233.101:5000/list/" + memory,  function(data, response){
+		callback(null, data);
+	}).on('error',function(err){
+		callback(err);
+	});
 };
 
 storageSchema.statics.create = function(memory, type, data, callback) {

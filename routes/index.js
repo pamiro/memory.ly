@@ -5,6 +5,7 @@
 
 var Memory = require('../models').Memory;
 var Storage = require('../models').Storage;
+var config = require('../config');
 
 exports.index = function(req, res){
 	res.render('index');
@@ -58,7 +59,8 @@ exports.view = function(req, res){
 	} else {
 
 		Storage.listAllItemsForMemory(req.params.memory, function(error, items) {
-			res.render('view', { memory: req.params.memory, items: items });
+			console.log(items.storage);
+			res.render('view', { memory: req.params.memory, items: items.storage, server: config.http.full_host, pic_url: config.http.pic_url });
 		});
 	} 
 };

@@ -1,5 +1,6 @@
 var config = require('./config');
 var express = require('express');
+var engine = require('ejs-locals');
 var MongoStore = require('connect-mongostore')(express);
 var routes = require('./routes');
 var Mongoose = require('mongoose');
@@ -13,7 +14,10 @@ var app = express();
 // all environments
 app.set('port', config.http.port);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('view engine', 'ejs');
+// app.set('view options', { layout:'layout.ejs' });
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());

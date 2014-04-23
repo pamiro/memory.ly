@@ -1,0 +1,27 @@
+<% layout('layout') -%>
+
+    <h1>memory.ly</h1>
+    <h2><%= memory %></h2>
+    <div id='dz-root'></div>
+
+    <ul>
+    <% for(var i=0; i<items.length; i++) {%>
+    	<% if(items[i].type === 'picture') { %>
+        	<li><img src="<%= pic_url %>/<%= items[i].data %>"></img></li>
+    	<% } %>
+    	<% if(items[i].type === 'deezer') { %>
+        	<li><img onclick='DZ.player.playTracks([<%= items[i].data %>]); return false;' src="http://imgs.tuts.dragoart.com/how-to-draw-pink-floyd-dark-side-of-the-moon_1_000000002854_3.jpg">
+        		
+        	</img></li>
+    	<% } %>
+	<% } %>
+    </ul>
+    <script> 
+		DZ.init({
+			appId  : '1363411',
+			channelUrl : '<%= server %>/javascript/deezer.html',
+			player : {
+				onload : function(){ }
+			}
+		});
+    </script>

@@ -19,5 +19,7 @@ if(config.mongodb.database.length)
 
 config.http.port = process.env.PORT || 3000;
 config.http.cookie_secret = process.env.HTTP_COOKIE_SECRET || 'YOUR COOKIE SECRET';
+config.http.full_host = process.env.HTTP_FULL_HOST || 'http://localhost:3000';
+config.http.pic_url = process.env.HTTP_PIC_URL || 'URL';
 
 module.exports = config;

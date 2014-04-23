@@ -1,0 +1,35 @@
+<% layout('layout') -%>
+    <h1>memory.ly</h1>
+
+    <p>Share your memories</p>
+
+    <form action="/demo" method="post">
+        <div>
+            <span>Memory:</span> <input name="memory" type="text" value="test">
+        </div>
+
+        <div>
+            <span>Type:</span> <input name="type" type="text" value="picture">
+        </div>
+
+        <div>
+            <span>Data:</span> <input name="data" type="text" value=
+            "http://tippvet.com/wp-content/uploads/2013/05/cat-vet-300x225.jpg">
+            </div>
+
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+
+
+
+    <form action="http://212.71.233.101:5000/post_image/test" method="post" enctype="multipart/form-data">
+        <div>
+            <span>File:</span> <input name="imgfile" type="file">
+        </div>
+
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>

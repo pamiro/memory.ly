@@ -11,6 +11,8 @@
     "connect-mongostore": "0.0.13",
     "mongoose": "~3.8.8",
     "randomstring": "~1.0.3",
-    "node-rest-client": "~0.8.6"
+    "node-rest-client": "~0.8.6",
+    "ejs": "~1.0.0",
+    "ejs-locals": "~1.0.2"
   }
 }
