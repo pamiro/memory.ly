@@ -6,6 +6,8 @@
 var Memory = require('../models').Memory;
 var Storage = require('../models').Storage;
 var config = require('../config');
+var Client = require('node-rest-client').Client;
+var restClient = new Client();
 
 exports.index = function(req, res){
 	res.render('index');
@@ -42,6 +44,22 @@ exports.create = function(req, res){
 	});
 
 };
+
+exports.art = function(req, res) {
+	if(req.params.type === 'track') {
+		restClient.get('http://api.deezer.com/track/' + req.params.id.trim(),  function(data, response) {
+			res.json( { art: JSON.parse(data).album.cover } );
+		}).on('error',function(err){
+			res.json({ });
+		});
+	} else if(req.params.type === 'album') {
+		restClient.get('http://api.deezer.com/album/' + req.params.id.trim(),  function(data, response) {
+			res.json( { art: JSON.parse(data).cover } );
+		}).on('error',function(err){
+			res.json({ });
+		});
+	}
+}
 
 exports.list = function(req, res) {
 	Memory.listAll(function(error, memories) {

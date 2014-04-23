@@ -41,6 +41,7 @@ app.get('/list', routes.list);
 app.get('/demo', routes.demo);
 app.post('/demo', routes.postDemo);
 app.get('/terms', routes.terms);
+app.get('/art/:service/:type/:id', routes.art);
 app.get('/:memory', routes.view);
 
 http.createServer(app).listen(app.get('port'), function(){

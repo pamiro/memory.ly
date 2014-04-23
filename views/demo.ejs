@@ -1,35 +1,92 @@
-<% layout('layout') -%>
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Momently</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="Create a memory box together just by sending a email">
+	
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="/stylesheets/normalize.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/skeleton.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,900italic' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
+	
+</head>
+<body>
+    
     <h1>memory.ly</h1>
+    <h2>test</h2>
+    <div id='dz-root'></div>
 
-    <p>Share your memories</p>
+    <ul id='item-list'>
+        	
+        	<li><img class='deezer-album' data='960466' onclick='DZ.player.playAlbum(960466); return false;' width='200' height='auto'
+        		src="/images/albumart.png">
+        		
+        	</img></li>
+    	
+        	<li><img class='deezer-track'  data='77652625'  onclick='DZ.player.playTracks([77652625]); return false;'  width='200' height='auto'
+        		src="/images/albumart.png">
+        	</img></li>
+	
+    	
+        	<li><img src="http://momently.nl:5000/image/5358034996ba1b4aeea346b3"></img></li>
+    	
+    	
+    	
+	
+    </ul>
+    <script> 
+		DZ.init({
+			appId  : '1363411',
+			channelUrl : 'http://localhost:3000/javascript/deezer.html',
+			player : {
+				onload : function(){ 
+					deezerAlbums = $( "#item-list .deezer-album" );
+					deezerTracks = $( "#item-list .deezer-track" );
+					var pullData = function(type, elem, id) {
+						$.getJSON( "/art/deezer/" + type + "/" + id, { }, function( resp ) {
+							elem.attr('src', resp.art);
+						});
+					};
 
-    <form action="/demo" method="post">
-        <div>
-            <span>Memory:</span> <input name="memory" type="text" value="test">
-        </div>
+					for (var i = deezerAlbums.length - 1; i >= 0; i--) {
+						var elem = $(deezerAlbums[i]);
+						var id = elem.attr('data');
+						pullData('album', elem, id);
+					};
 
-        <div>
-            <span>Type:</span> <input name="type" type="text" value="picture">
-        </div>
+					for (var i = deezerTracks.length - 1; i >= 0; i--) {
+						var elem = $(deezerTracks[i]);
+						var id = elem.attr('data');
+						pullData('track', elem, id);
+					};
 
-        <div>
-            <span>Data:</span> <input name="data" type="text" value=
-            "http://tippvet.com/wp-content/uploads/2013/05/cat-vet-300x225.jpg">
-            </div>
+				}
+			}
+		});
 
-        <div>
-            <input type="submit" value="Save">
-        </div>
-    </form>
+		function playTrack(elem, track) {
+			stopPlaying();
+			DZ.player.playTracks([ track ]);
+		}
 
+		function playAlbum(elem, album) {
+			stopPlaying();
+			DZ.player.playAlbum(album);
+		}
 
+		function stopPlaying() {
 
-    <form action="http://212.71.233.101:5000/post_image/test" method="post" enctype="multipart/form-data">
-        <div>
-            <span>File:</span> <input name="imgfile" type="file">
-        </div>
+		}
 
-        <div>
-            <input type="submit" value="Save">
-        </div>
-    </form>
+    </script>
+  </body>
+</html>

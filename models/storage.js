@@ -7,7 +7,6 @@ var Schema = mongoose.Schema;
 var config = require('../config');
 var Client = require('node-rest-client').Client;
 var restClient = new Client();
-var deezerClient = new Client();
 
 var storageSchema = new Schema({
 	memory: 		{ type: String, required: true },
