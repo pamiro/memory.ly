@@ -10,6 +10,10 @@ exports.index = function(req, res){
 	res.render('index');
 };
 
+exports.terms = function(req, res){
+	res.render('terms');
+};
+
 exports.demo = function(req, res){
 	res.render('demo');
 };
