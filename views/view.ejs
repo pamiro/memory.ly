@@ -84,7 +84,12 @@
 	function refreshData() {
 		$.get( "/<%= memory %>/data?lastPull=" + lastPull.trim(), { }, function( resp ) {
 			lastPull = 'second';
-			$('#item-list').append(resp);
+
+			qResp = $(resp);
+			for (var i = qResp.length - 1; i >= 0; i--) {
+				$(qResp[i]).hide().prependTo('#item-list').fadeIn(1000);
+			};
+
 			pullDeezer();
 		})
 		.always(function() {
