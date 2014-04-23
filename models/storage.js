@@ -21,22 +21,18 @@ storageSchema.statics.listAllItemsForMemory = function(memory, callback) {
 		for (var i = data.length - 1; i >= 0; i--) {
 			if(data[i].type === 'deezer') {
 				if(data[i].data.indexOf('/album/') > -1) {
-					var re = new RegExp('/album/(\d*)');
-					data[i].data = re.exec(data[i].data)[1];
+					var re = new RegExp('/album/([0-9]+)');
+					var id = data[i].data.match(re)[1];
+					data[i].data = id;
 					data[i].type = 'deezer-album';
-console.log('http://api.deezer.com/album/' + data[i].data);
-					deezerClient.get('http://api.deezer.com/album/' + data[i].data, function(deezer_data, deezer_response) {
-						console.log(deezer_data);
-					});
-
 				} else if(data[i].data.indexOf('/track/') > -1) {
-					var re = new RegExp('/track/(\d*)');
-					data[i].data = re.exec(data[i].data)[1];
+					var re = new RegExp('/track/([0-9]+)');
+					var id = data[i].data.match(re)[1];
+					data[i].data = id;
 					data[i].type = 'deezer-track';
 				}
 			}
 		};
-
 		callback(null, data);
 	}).on('error',function(err){
 		callback(err);
