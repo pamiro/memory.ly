@@ -1,145 +1,78 @@
-/* Stylesheet of the MemoryBox
-   made 23 april 2014 for TNW 
-   Hack Battle.                */
+/* Stylesheet of the memorly project  */
+/* Created during TNW Kings Of Code Hack Battle 2014  */
+
+/* ////////////////////////// */
+/* Table of contents          */
+/* 1. Body parts              */
+/* 2. Text styles             */
+/* 3. Main elements           */
+/* 4. Buttons                 */
+/* 5. Backgrounds             */
+/* ////////////////////////// */
 
 
- 
-
-/* All textstyles */
-
+/* 1. Body parts */
 body{
 	background-color: #f0f0f0;
 	margin-bottom: 50px;
 }
 
-p{
-	font-family: 'Lato', 'sans-serif';
-	padding: 0px;
-	margin: 0px;
-}
 
-.sitename{
-	font-weight: 900;
-	color: #eaeaea;
-	font-size: 17pt;
-	margin-top: 20px;
-}
 
-.sitename a{
-	color: #eaeaea;
-	text-decoration: none;
-}
 
-.sitename a:hover{
-	color: #ffffff;
-}
-.memorytitle{
-	font-weight: 900;
-	font-style: italic;
-	font-size: 40pt;
-	color: #ffffff;
-	margin-top: 70px;
-}
 
-.memorysubtitle{
-	font-weight: 900;
-	font-style: italic;
-	font-size: 15pt;
-	color: rgba(255,255,255,0.77);
-}
 
-.memorysubtitle a{
-	color: white;
-	text-decoration: none;
-}
+/* 2. Text styles */
 
-.memorysubtitle a:hover{
-	color: #e5e5e5;
-}
+p{font-family: 'Lato', 'sans-serif'; padding: 0px; margin: 0px;}
 
-.memorysubtitle a{
-	color: #007eff;
-}
+.sitename{font-weight: 900; color: #eaeaea; font-size: 17pt; margin-top: 20px;}
+.sitename a{color: #eaeaea; text-decoration: none;}
+.sitename a:hover{color: #ffffff;}
 
-.memorysubtitle a:hover{
-	color: #005ab2;
-}
+.memorytitle{font-weight: 900; font-style: italic; font-size: 40pt; color: #ffffff; margin-top: 70px;}
+.memorysubtitle{font-weight: 900; font-style: italic; font-size: 15pt; color: rgba(255,255,255,0.77);}
+.memorysubtitle a{color: #ffffff; text-decoration: none;}
+.memorysubtitle a:hover{color: #e5e5e5;}
 
-.adress{
-	font-weight: 900;
-	color: #eaeaea;
-	font-size: 25pt;
-	margin-top: 10px;
-}
+/* Homepage */
+.welcome .adress{font-weight: 900; color: #eaeaea; font-size: 25pt; margin-top: 10px;}
+.createnew{font-weight: 900; color: #ffffff; font-size: 25pt; display: inline;}
+/* Inputfield */
+	.newmemory{
+		font-family: 'Lato', 'sans-serif';
+		padding: 10px;
+		background-color: white;
+		border: 1px solid #878787;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		font-weight: 900;
+		color: #232323;
+		font-size: 25pt;
+		display: inline;
+		max-width: 300px;
+		text-align: right;
+	}
 
-.name{
-	padding-top: 5px;
-	font-size: 12pt;
-	font-weight: 700;
-	color: #222222;
-}
+/* View - Profile */
+.name{padding-top: 5px; font-size: 12pt; font-weight: 700; color: #222222;}
+.username a{font-size: 10pt; font-weight: 400; color: #a2a2a2; text-decoration: none;}
+.username a:hover{color: #616161;}
 
-.username a{
-	font-size: 10pt;
-	font-weight: 400;
-	color: #a2a2a2;
-	text-decoration: none;
-}
+/* View - Twitter styles */
+.twitterprofile .name:after{content: url('../images/twitter.png'); margin-left: 7px;}
+.tweet{margin-top: 10px; font-size: 14pt; font-weight: 300; font-style: italic;}
 
-.username a:hover{
-	color: #616161;
-}
 
-.twitterprofile .name:after{
-    content: url('../images/twitter.png');
-    margin-left: 7px;
-}
 
-.tweet{
-	margin-top: 10px;
-	font-size: 14pt;
-	font-weight: 300;
-	font-style: italic;
-}
 
-.test{
-	background-color: rgba(0,0,0,0.60);
-	height: 100%;
-	overflow-y: scroll;
-}
 
-.createnew{
-	font-weight: 900;
-	color: #ffffff;
-	font-size: 25pt;
-	display: inline;
-}
 
-.centertxt{
-	text-align: center;
-}
 
-.newmemory{
-	font-family: 'Lato', 'sans-serif';
-	padding: 10px;
-	background-color: white;
-	border: 1px solid #878787;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	font-weight: 900;
-	color: #232323;
-	font-size: 25pt;
-	display: inline;
-	max-width: 300px;
-	text-align: right;
-}
 
-.margintopp{
-	margin-top: 100px;
-}
+/* 3. Main elements */
 
-/* Main elements */
 .topbar{
 	height: 70px;
 	background: #1f1f1f; /* Old browsers */
@@ -152,63 +85,17 @@ p{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f1f1f', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
 
-.header{
-	height: 350px;
-	width: 100%;
-	background-color: black;
-	background-size: cover;
-	background-color: black;
-}
+.header{height: 350px; width: 100%; background-color: black; background-size: cover; background-color: black;}
+.contentspace{margin-top: 50px; }
+.content{background-color: white; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border: 1px solid #cacaca; padding: 10px; margin-bottom: 20px;}
 
-.contentspace{
-	margin-top: 50px;
-}
+.content img{width: 100%; height: auto;}
 
-.content{
-	background-color: white;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	border: 1px solid #cacaca;
-	padding: 10px;
-	margin-bottom: 20px;
-}
-
-.content img{
-	width: 100%;
-	height: auto;
-	
-}
-
-.content{
-	background-color: white;
-}
-
-.instagramprofile{
-	margin-top: 10px;
-}
-.instagramprofile img{
-	width: 50px;
-	height: 50px;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	border-radius: 50px;
-	float: left; margin-right: 10px;
-}
+.instagramprofile{margin-top: 10px;}
+.instagramprofile img{width: 50px; height: 50px; -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px; float: left; margin-right: 10px;}
 
 
-.twitterprofile{
-	
-}
-
-.twitterprofile img{
-	width: 50px;
-	height: 50px;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	border-radius: 50px;
-	float: left; margin-right: 10px;
-}
+.twitterprofile img{width: 50px; height: 50px; -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px; float: left; margin-right: 10px;}
 
 
 
@@ -226,7 +113,6 @@ p{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
-
 .topbutton:hover{background-color: #535353;}
 
 .actionbutton{
@@ -240,36 +126,19 @@ p{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
-
-.actionbutton:hover{
-	background-color: rgba(255,255,255,0.8);
-}
-
-.welcome{
-	background-image: url('../images/welcomeimg.jpg');
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	bottom: 0px;
-	background-size: cover;
-	z-index: -1;
-}
-
-.success{
-	background-image: url('../images/successimg.jpg');
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	bottom: 0px;
-	background-size: cover;
-	z-index: -1;
-}
+.actionbutton:hover{ background-color: rgba(255,255,255,0.8);}
 
 
-/* Fixes */
 
-.alignright{
-	text-align: right;
-}
+/* 5. Backgrounds */
+.welcome{background-image: url('../images/welcomeimg.jpg'); height: 100%; width: 100%; position: fixed; bottom: 0px; background-size: cover; z-index: -1;}
 
+.success{background-image: url('../images/successimg.jpg'); height: 100%; width: 100%; position: fixed; bottom: 0px; background-size: cover; z-index: -1;}
+
+
+/* Ugly fixes down below */
+
+.alignright{text-align: right;}
 button:focus {outline:0;}
+.centertxt{text-align: center;}
+.margintopp{margin-top: 100px;}
