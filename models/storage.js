@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var config = require('../config');
 var Client = require('node-rest-client').Client;
 var restClient = new Client();
+var deezerClient = new Client();
 
 var storageSchema = new Schema({
 	memory: 		{ type: String, required: true },
@@ -23,6 +24,11 @@ storageSchema.statics.listAllItemsForMemory = function(memory, callback) {
 					var re = new RegExp('/album/(\d*)');
 					data[i].data = re.exec(data[i].data)[1];
 					data[i].type = 'deezer-album';
+console.log('http://api.deezer.com/album/' + data[i].data);
+					deezerClient.get('http://api.deezer.com/album/' + data[i].data, function(deezer_data, deezer_response) {
+						console.log(deezer_data);
+					});
+
 				} else if(data[i].data.indexOf('/track/') > -1) {
 					var re = new RegExp('/track/(\d*)');
 					data[i].data = re.exec(data[i].data)[1];
