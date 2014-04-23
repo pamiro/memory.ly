@@ -1,18 +1,17 @@
-
-/**
- * Module dependencies.
- */
-
+var config = require('./config');
 var express = require('express');
+var MongoStore = require('connect-mongostore')(express);
 var routes = require('./routes');
-var user = require('./routes/user');
+var Mongoose = require('mongoose');
 var http = require('http');
 var path = require('path');
+var Memory = require('./models').Memory;
+
 
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', config.http.port);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -23,10 +22,19 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+app.use(express.cookieParser());
+app.use(express.session({	secret: config.http.cookie_secret,
+							cookie: {maxAge: 60*60*24*365*10},
+						    store: new MongoStore( { db: config.mongodb.database,
+						    						host: config.mongodb.host,
+						    						port: config.mongodb.port,
+						    						username: config.mongodb.user, 
+						    						password: config.mongodb.password })}));
 
+app.get('/', routes.index);
 app.post('/create', routes.create);
+app.get('/list', routes.list);
+app.get('/:memory', routes.view);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

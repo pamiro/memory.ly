@@ -7,6 +7,9 @@
   },
   "dependencies": {
     "express": "3.4.6",
-    "jade": "*"
+    "jade": "*",
+    "connect-mongostore": "0.0.13",
+    "mongoose": "~3.8.8",
+    "randomstring": "~1.0.3"
   }
 }

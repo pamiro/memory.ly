@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h1 memory.ly
+	p All recent memories
+	ul
+		each memory in memories
+			li
+				a(href='/#{memory.name}') #{memory.name}
