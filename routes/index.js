@@ -59,8 +59,7 @@ exports.view = function(req, res){
 	} else {
 
 		Storage.listAllItemsForMemory(req.params.memory, function(error, items) {
-			console.log(items.storage);
-			res.render('view', { memory: req.params.memory, items: items.storage, server: config.http.full_host, pic_url: config.http.pic_url });
+			res.render('view', { memory: req.params.memory, items: items, server: config.http.full_host, pic_url: config.http.pic_url });
 		});
 	} 
 };

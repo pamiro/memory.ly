@@ -16,19 +16,17 @@ var storageSchema = new Schema({
 
 storageSchema.statics.listAllItemsForMemory = function(memory, callback) {
 	restClient.get(config.http.rest_url + "/list/" + memory,  function(data, response) {
-
+		data = data.storage;
 		for (var i = data.length - 1; i >= 0; i--) {
 			if(data[i].type === 'deezer') {
 				if(data[i].data.indexOf('/album/') > -1) {
 					var re = new RegExp('/album/(\d*)');
 					data[i].data = re.exec(data[i].data)[1];
 					data[i].type = 'deezer-album';
-		console.log(data[i].data);
 				} else if(data[i].data.indexOf('/track/') > -1) {
 					var re = new RegExp('/track/(\d*)');
 					data[i].data = re.exec(data[i].data)[1];
 					data[i].type = 'deezer-track';
-		console.log(data[i].data);
 				}
 			}
 		};
