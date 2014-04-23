@@ -1,41 +1,6 @@
 <% layout('layout') -%>
 
-    <h1>memory.ly</h1>
-    <h2><%= memory %></h2>
-    <div id='dz-root'></div>
-
-    <ul>
-    <% for(var i=0; i<items.length; i++) {%>
-    	<% if(items[i].type === 'picture') { %>
-        	<li><img src="<%= items[i].data %>"></img></li>
-    	<% } %>
-    	<% if(items[i].type === 'deezer-track') { %>
-        	<li><img onclick='DZ.player.playTracks([<%= items[i].data %>]); return false;' src="http://imgs.tuts.dragoart.com/how-to-draw-pink-floyd-dark-side-of-the-moon_1_000000002854_3.jpg">
-        		
-        	</img></li>
-    	<% } %>
-    	<% if(items[i].type === 'deezer-album') { %>
-        	<li><img onclick='DZ.player.playAlbum(<%= items[i].data %>); return false;' src="http://imgs.tuts.dragoart.com/how-to-draw-pink-floyd-dark-side-of-the-moon_1_000000002854_3.jpg">
-        		
-        	</img></li>
-    	<% } %>
-	<% } %>
-    </ul>
-    <script> 
-		DZ.init({
-			appId  : '1363411',
-			channelUrl : '<%= server %>/javascript/deezer.html',
-			player : {
-				onload : function(){ }
-			}
-		});
-    </script>
-    
-    
-    
-/* This is Rogier's part! */
-
-
+<div id='dz-root' style='display:none'></div>
 
 <div class="topbar">
 	<div class="container">
@@ -43,8 +8,8 @@
 		<div class="three columns alignright">
 			<button class="topbutton" ONCLICK="window.location.href='/'">Start a new memory</button>
 		</div>
-	</div> <!-- container -->
-</div> <!-- topbar -->
+	</div>
+</div>
 
 <div class="header" style="background-image: url(images/bg.jpeg);">
 <div class="test">
@@ -54,35 +19,91 @@
 			<p class="memorysubtitle">Want to contribute to this memory? Just send a mail to <a href="mailto:hackbattle@memorybox.co"><%= memory %>@memorybox.co</a>.</p>
 		</div>
 	</div>
-	</div> <!-- container -->
-</div><!-- headerbg -->
-
+	</div>
+</div>
 
 <div class="contentspace">
-	<div class="container">
+	<div class="container" id='item-list'>
 	
-		<!-- start instagram -->
-		<div class="five columns content">
-			<img src="http://distilleryimage2.s3.amazonaws.com/4b971758cae411e396680002c9d67332_8.jpg">
-			<div class="instagramprofile">
-				<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
-				<p class="name">Martijn van der Weide</p>
-				<p class="username"><a href="#">@martijnvdweide</a></p>
-			</div>
-		</div>
-		<!-- end instagram -->
-		
-		<!-- start twitter -->
-		<div class="ten columns content">
-			<div class="twitterprofile">
-				<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
-				<p class="name">Martijn van der Weide</p>
-				<p class="username"><a href="#">@martijnvdweide</a></p>
-				<p class="tweet">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam enim dolor, ornare vel nunc quis, iaculis cursus dolor. Pellentesque habitant morbi.</p>
-			</div>
-		</div>
-		<!-- end twitter -->
-		
-		
-	</div> <!-- container -->
-</div> <!-- contentspace -->
+    	<% for(var i=0; i<items.length; i++) {%>
+			<% if(items[i].type === 'picture') { %>
+				<div class="five columns content">
+					<img src="<%= items[i].data %>">
+					<div class="instagramprofile">
+						<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
+						<p class="name">Martijn van der Weide</p>
+						<p class="username"><a href="#">@martijnvdweide</a></p>
+					</div>
+				</div>
+			<% } %>
+
+			<% if(items[i].type === 'deezer-album') { %>
+				<div class="five columns content">
+					<img src="/images/albumart.png" class='deezer-album deezer-item' data='<%= items[i].data %>'>
+					<div class="instagramprofile">
+						<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
+						<p class="name">Martijn van der Weide</p>
+						<p class="username"><a href="#">@martijnvdweide</a></p>
+					</div>
+				</div>
+			<% } %>
+
+			<% if(items[i].type === 'deezer-track') { %>
+				<div class="five columns content">
+					<img src="/images/albumart.png" class='deezer-track deezer-item' data='<%= items[i].data %>'>
+					<div class="instagramprofile">
+						<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
+						<p class="name">Martijn van der Weide</p>
+						<p class="username"><a href="#">@martijnvdweide</a></p>
+					</div>
+				</div>
+			<% } %>
+    	<% } %>
+	</div> 
+</div>
+
+<script> 
+	DZ.init({
+		appId  : '1363411',
+		channelUrl : 'http://localhost:3000/javascript/deezer.html',
+		player : {
+			onload : function(){ 
+				deezerAlbums = $( "#item-list .deezer-album" );
+				deezerTracks = $( "#item-list .deezer-track" );
+				var pullData = function(type, elem, id) {
+					$.getJSON( "/art/deezer/" + type + "/" + id, { }, function( resp ) {
+						elem.attr('src', resp.art);
+					});
+				};
+
+				for (var i = deezerAlbums.length - 1; i >= 0; i--) {
+					var elem = $(deezerAlbums[i]);
+					var id = elem.attr('data');
+					pullData('album', elem, id);
+					elem.click(function() {
+						play('album', id);
+					})
+				};
+
+				for (var i = deezerTracks.length - 1; i >= 0; i--) {
+					var elem = $(deezerTracks[i]);
+					var id = elem.attr('data');
+					pullData('track', elem, id);
+					elem.click(function() {
+						play('track', id);
+					})
+				};
+
+			}
+		}
+	});
+
+	function play(type, id) {
+		if(type === 'album') {
+			DZ.player.playAlbum(id);
+		} else if(type === 'track') {
+			DZ.player.playTracks([id]);
+		}
+	}
+
+</script>
