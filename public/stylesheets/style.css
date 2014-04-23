@@ -48,6 +48,13 @@ p{
 	color: #005ab2;
 }
 
+.adress{
+	font-weight: 900;
+	color: #eaeaea;
+	font-size: 25pt;
+	margin-top: 10px;
+}
+
 .name{
 	padding-top: 5px;
 	font-size: 12pt;
@@ -81,6 +88,37 @@ p{
 .test{
 	background-color: rgba(0,0,0,0.60);
 	height: 100%;
+}
+
+.createnew{
+	font-weight: 900;
+	color: #ffffff;
+	font-size: 25pt;
+	display: inline;
+}
+
+.centertxt{
+	text-align: center;
+}
+
+.newmemory{
+	font-family: 'Lato', 'sans-serif';
+	padding: 10px;
+	background-color: white;
+	border: 1px solid #878787;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: 900;
+	color: #232323;
+	font-size: 25pt;
+	display: inline;
+	max-width: 300px;
+	text-align: right;
+}
+
+.margintopp{
+	margin-top: 100px;
 }
 
 /* Main elements */
@@ -173,6 +211,31 @@ p{
 
 .topbutton:hover{background-color: #535353;}
 
+.actionbutton{
+	background-color: rgba(255,255,255,0.44);
+	padding: 20px;
+	font-family: 'Lato', 'sans-serif';
+	font-weight: 600;
+	border: 1px solid #323232;
+	color: white;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.actionbutton:hover{
+	background-color: rgba(255,255,255,0.8);
+}
+
+.welcome{
+	background-image: url('../images/welcomeimg.jpg');
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	background-size: cover;
+	z-index: -1;
+}
 
 /* Fixes */
 

@@ -1,14 +1,34 @@
 <% layout('layout') -%>
-    <h1>memory.ly</h1>
 
-    <p>Share your memories</p>
+    <div class="topbar">
+	<div class="container">
+		<div class="sixteen columns"><p class="sitename">Momently</p></div>
+	</div> <!-- container -->
+</div> <!-- topbar -->
 
-    <form action="/create" method="post">
-        <div>
-            <input name="memory" placeholder="optional name" type="text">
-        </div>
-
-        <div>
-            <input type="submit" value="Create">
-        </div>
-    </form>
+<div class="welcome">
+<div class="test">
+	<div class="container">
+	<form action="/create" method="post">
+		<div class="sixteen columns centertxt margintopp">
+			<p class="memorytitle">Create a memory together with all the other participants of an event</p>
+			<br><br>
+			<p class="memorysubtitle">Momently collects all the content of your friends simply by email. </p>
+			<br><br><br><br>
+			<p class="createnew">Start right now:</p>
+			<br><br>
+		</div>
+		<div class="eight columns alignright">
+			<input class="newmemory"  name="memory" type="text" placeholder="yourmemoryname"><p class="createnew">
+		</div>
+		<div class="eight columns">
+			<p class="adress">@momently.nl</p>
+		</div>
+		<div class="sixteen columns centertxt">
+		<br>
+			<button class="actionbutton" type="submit" value="Create">Create memory</button>
+		</div>
+	</div> <!-- container -->
+	</form>
+</div><!-- test -->
+</div><!-- welcome -->
