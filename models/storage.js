@@ -4,6 +4,7 @@ var util = require('util');
 var db = require('./db').getConnection();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var config = require('../config');
 var Client = require('node-rest-client').Client;
 var restClient = new Client();
 
@@ -14,22 +15,24 @@ var storageSchema = new Schema({
 });
 
 storageSchema.statics.listAllItemsForMemory = function(memory, callback) {
+	restClient.get(config.http.rest_url + "/list/" + memory,  function(data, response) {
 
-	// if(!memory) {
-	// 	throw new Error('No memory provided');
-	// }
+		for (var i = data.length - 1; i >= 0; i--) {
+			if(data[i].type === 'deezer') {
+				if(data[i].data.indexOf('/album/') > -1) {
+					var re = new RegExp('/album/(\d*)');
+					data[i].data = re.exec(data[i].data)[1];
+					data[i].type = 'deezer-album';
+		console.log(data[i].data);
+				} else if(data[i].data.indexOf('/track/') > -1) {
+					var re = new RegExp('/track/(\d*)');
+					data[i].data = re.exec(data[i].data)[1];
+					data[i].type = 'deezer-track';
+		console.log(data[i].data);
+				}
+			}
+		};
 
-	// this.find({ memory: memory }, function(error, items) {
-	// 	if(error) {
-	// 		callback(error);
-	// 	} else if(items) {
-	// 		callback(null, items);
-	// 	} else {
-	// 		callback('Unknown error');
-	// 	}
-	// })
-
-	restClient.get("http://212.71.233.101:5000/list/" + memory,  function(data, response){
 		callback(null, data);
 	}).on('error',function(err){
 		callback(err);
