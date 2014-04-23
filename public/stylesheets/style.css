@@ -37,7 +37,11 @@ p{
 	font-weight: 900;
 	font-style: italic;
 	font-size: 15pt;
-	color: #b9b9b9;
+	color: rgba(255,255,255,0.77);
+}
+
+.memorysubtitle a{
+	color: #ffffff;
 }
 
 .memorysubtitle a{
