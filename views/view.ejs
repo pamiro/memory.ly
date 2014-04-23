@@ -25,80 +25,55 @@
 <div class="contentspace">
 	<div class="container" id='item-list'>
 	
-    	<% for(var i=0; i<items.length; i++) {%>
-			<% if(items[i].type === 'picture') { %>
-				<div class="five columns content">
-					<img src="<%= items[i].data %>">
-					<div class="instagramprofile">
-						<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
-						<p class="name">Martijn van der Weide</p>
-						<p class="username"><a href="#">@martijnvdweide</a></p>
-					</div>
-				</div>
-			<% } %>
-
-			<% if(items[i].type === 'deezer-album') { %>
-				<div class="five columns content">
-					<img src="/images/albumart.png" class='deezer-album deezer-item' data='<%= items[i].data %>'>
-					<div class="instagramprofile">
-						<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
-						<p class="name">Martijn van der Weide</p>
-						<p class="username"><a href="#">@martijnvdweide</a></p>
-					</div>
-				</div>
-			<% } %>
-
-			<% if(items[i].type === 'deezer-track') { %>
-				<div class="five columns content">
-					<img src="/images/albumart.png" class='deezer-track deezer-item' data='<%= items[i].data %>'>
-					<div class="instagramprofile">
-						<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
-						<p class="name">Martijn van der Weide</p>
-						<p class="username"><a href="#">@martijnvdweide</a></p>
-					</div>
-				</div>
-			<% } %>
-    	<% } %>
 	</div> 
 </div>
 
 <script> 
+	var DZloaded = false;
+	var lastPull = '<%= pullTimestamp %>';
+
 	DZ.init({
 		appId  : '1363411',
-		channelUrl : 'http://localhost:3000/javascript/deezer.html',
+		channelUrl : '<%= server %>/javascript/deezer.html',
 		player : {
-			onload : function(){ 
-				deezerAlbums = $( "#item-list .deezer-album" );
-				deezerTracks = $( "#item-list .deezer-track" );
-				var pullData = function(type, elem, id) {
-					$.getJSON( "/art/deezer/" + type + "/" + id, { }, function( resp ) {
-						elem.attr('src', resp.art);
-					});
-				};
-
-				for (var i = deezerAlbums.length - 1; i >= 0; i--) {
-					var elem = $(deezerAlbums[i]);
-					var id = elem.attr('data');
-					pullData('album', elem, id);
-					elem.click(function() {
-						play('album', id);
-					})
-				};
-
-				for (var i = deezerTracks.length - 1; i >= 0; i--) {
-					var elem = $(deezerTracks[i]);
-					var id = elem.attr('data');
-					pullData('track', elem, id);
-					elem.click(function() {
-						play('track', id);
-					})
-				};
-
+			onload : function() { 
+				DZloaded = true;
 			}
 		}
 	});
 
+	function pullDeezer() {	
+		deezerAlbums = $( "#item-list .deezer-album.deezer-wait" );
+		deezerTracks = $( "#item-list .deezer-track.deezer-wait" );
+		var pullData = function(type, elem, id) {
+			$.getJSON( "/art/deezer/" + type + "/" + id, { }, function( resp ) {
+				elem.attr('src', resp.art);
+				elem.removeClass('deezer-wait');
+			});
+		};
+
+		for (var i = deezerAlbums.length - 1; i >= 0; i--) {
+			var elem = $(deezerAlbums[i]);
+			var id = elem.attr('data');
+			pullData('album', elem, id);
+			elem.click(function() {
+				play('album', id);
+			})
+		};
+
+		for (var i = deezerTracks.length - 1; i >= 0; i--) {
+			var elem = $(deezerTracks[i]);
+			var id = elem.attr('data');
+			pullData('track', elem, id);
+			elem.click(function() {
+				play('track', id);
+			})
+		};
+	}
+
 	function play(type, id) {
+		if(!DZloaded)
+			return;
 		if(type === 'album') {
 			DZ.player.playAlbum(id);
 		} else if(type === 'track') {
@@ -106,4 +81,18 @@
 		}
 	}
 
+	function refreshData() {
+		$.get( "/<%= memory %>/data?lastPull=" + lastPull.trim(), { }, function( resp ) {
+			lastPull = 'second';
+			$('#item-list').append(resp);
+			pullDeezer();
+		})
+		.always(function() {
+	    	setTimeout(function() { refreshData() }, 2000);
+		});
+	}
+
+	$(document).ready(function () {
+	    refreshData();
+	});
 </script>

@@ -75,9 +75,22 @@ exports.view = function(req, res){
 	if(!req.params.memory) {
 		res.json({ error: "Wrong call" });
 	} else {
+		res.render('view', { pullTimestamp: 'first', memory: req.params.memory, server: config.http.full_host, pic_url: config.http.pic_url });
+	} 
+};
 
-		Storage.listAllItemsForMemory(req.params.memory, function(error, items) {
-			res.render('view', { memory: req.params.memory, items: items, server: config.http.full_host, pic_url: config.http.pic_url });
+exports.viewData = function(req, res){
+	if(!req.params.memory) {
+		res.json({ error: "Wrong call" });
+	} else {
+
+		if(req.query.lastPull !== 'first') {
+			res.send('');
+			return;
+		}
+
+		Storage.listAllItemsForMemory(req.params.memory, req.query.lastPull, function(error, items) {
+			res.render('data', { items: items });
 		});
 	} 
 };

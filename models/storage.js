@@ -14,7 +14,7 @@ var storageSchema = new Schema({
 	data:  			{ type: String, required: true }
 });
 
-storageSchema.statics.listAllItemsForMemory = function(memory, callback) {
+storageSchema.statics.listAllItemsForMemory = function(memory, lastPull, callback) {
 	restClient.get(config.http.rest_url + "/list/" + memory,  function(data, response) {
 		data = data.storage;
 		for (var i = data.length - 1; i >= 0; i--) {
