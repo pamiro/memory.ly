@@ -25,6 +25,14 @@ p{
 	margin-top: 20px;
 }
 
+.sitename a{
+	color: #eaeaea;
+	text-decoration: none;
+}
+
+.sitename a:hover{
+	color: #ffffff;
+}
 .memorytitle{
 	font-weight: 900;
 	font-style: italic;
