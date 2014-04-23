@@ -135,6 +135,7 @@ p{font-family: 'Lato', 'sans-serif'; padding: 0px; margin: 0px;}
 
 .success{background-image: url('../images/successimg.jpg'); height: 100%; width: 100%; position: fixed; bottom: 0px; background-size: cover; z-index: -1;}
 
+.test{background-color: rgba(0,0,0,0.60); height: 100%; overflow-y: scroll;}
 
 /* Ugly fixes down below */
 
