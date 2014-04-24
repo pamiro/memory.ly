@@ -42,6 +42,8 @@
 			$.getJSON( "/art/deezer/" + type + "/" + id, { }, function( resp ) {
 				elem.attr('src', resp.art);
 				elem.removeClass('deezer-wait');
+				$('#id_song_deezer-' + type + id).text(resp.name);
+				$('#id_name_deezer-' + type + id).text(resp.artist);
 			});
 		};
 

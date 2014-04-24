@@ -2,13 +2,13 @@
 <% for(var i=0; i<items.length; i++) {%>
 	<% if(items[i].type === 'picture') { %>
 		<div class="five columns content">
-			<a href="<%= items[i].data %>" data-lightbox="picset">
+			<a href="<%= items[i].url %>" data-lightbox="picset">
 				<img src="<%= items[i].data %>">
 			</a>
 			<div class="instagramprofile">
 				<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
-				<p class="name">Martijn van der Weide</p>
-				<p class="username"><a href="#">@martijnvdweide</a></p>
+				<p class="name"><%= (!items[i].subject) ? "A picture from" : items[i].subject %></p>
+				<p class="username"><a href="<%= (!items[i].from) ?  "#" : ("mailto:" + items[i].from) %>"><%= (!items[i].from) ?  "Anonymous" : items[i].from %></a></p>
 			</div>
 		</div>
 	<% } %>
@@ -21,8 +21,8 @@
 		</div>
 			<div class="instagramprofile">
 				<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
-				<p class="name">Martijn van der Weide</p>
-				<p class="username"><a href="#">@martijnvdweide</a></p>
+				<p class="name" id='<%= 'id_song_' + items[i].type + items[i].data %>'>Song</p>
+				<p class="username"><a href="#" id='<%= 'id_name_' + items[i].type + items[i].data %>'>by...</a></p>
 			</div>
 		</div>
 	<% } %>
