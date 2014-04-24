@@ -13,20 +13,10 @@
 		</div>
 	<% } %>
 
-	<% if(items[i].type === 'deezer-album') { %>
+	<% if(items[i].type.indexOf('deezer') > -1) { %>
 		<div class="five columns content">
-			<img src="/images/albumart.png" class='deezer-album deezer-item deezer-wait' data='<%= items[i].data %>'>
-			<div class="instagramprofile">
-				<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
-				<p class="name">Martijn van der Weide</p>
-				<p class="username"><a href="#">@martijnvdweide</a></p>
-			</div>
-		</div>
-	<% } %>
-
-	<% if(items[i].type === 'deezer-track') { %>
-		<div class="five columns content">
-			<img src="/images/albumart.png" class='deezer-track deezer-item deezer-wait' data='<%= items[i].data %>'>
+			<img src='/images/play.png' width='100%' height='auto' class='playbutton' >
+			<img src="/images/albumart.png" class='<%= items[i].type %> deezer-item deezer-wait' data='<%= items[i].data %>'>
 			<div class="instagramprofile">
 				<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
 				<p class="name">Martijn van der Weide</p>

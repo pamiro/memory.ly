@@ -45,7 +45,7 @@
 	function pullDeezer() {	
 		deezerAlbums = $( "#item-list .deezer-album.deezer-wait" );
 		deezerTracks = $( "#item-list .deezer-track.deezer-wait" );
-		var pullData = function(type, elem, id) {
+		var pullData = function(type, elem, id, playButton) {
 			$.getJSON( "/art/deezer/" + type + "/" + id, { }, function( resp ) {
 				elem.attr('src', resp.art);
 				elem.removeClass('deezer-wait');
@@ -55,30 +55,46 @@
 		for (var i = deezerAlbums.length - 1; i >= 0; i--) {
 			var elem = $(deezerAlbums[i]);
 			var id = elem.attr('data');
-			pullData('album', elem, id);
-			elem.click(function() {
-				play('album', id);
+			var prev = elem.prev();
+			pullData('album', elem, id, prev);
+			prev.click(function() {
+				play('album', id, this);
 			})
 		};
 
 		for (var i = deezerTracks.length - 1; i >= 0; i--) {
 			var elem = $(deezerTracks[i]);
 			var id = elem.attr('data');
-			pullData('track', elem, id);
-			elem.click(function() {
-				play('track', id);
+			var prev = elem.prev();
+			pullData('track', elem, id, prev);
+			prev.click(function() {
+				play('track', id, this);
 			})
 		};
 	}
 
-	function play(type, id) {
+	function play(type, id, elem) {
 		if(!DZloaded)
 			return;
+		resetAllPlayButtons();
+		if(DZ.player.isPlaying()) {
+			DZ.player.pause();
+			return;
+		}
+		$(elem).attr('src', '/images/pause.png');
 		if(type === 'album') {
 			DZ.player.playAlbum(id);
 		} else if(type === 'track') {
 			DZ.player.playTracks([id]);
 		}
+	}
+
+	function resetAllPlayButtons() {
+		var playButtons = $(".playbutton");
+		for (var i = playButtons.length - 1; i >= 0; i--) {
+			var elem = $(playButtons[i]);
+			elem.attr('src', '/images/play.png');
+		};
 	}
 
 	function refreshData() {
