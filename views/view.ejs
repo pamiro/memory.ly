@@ -81,6 +81,7 @@
 			DZ.player.pause();
 			return;
 		}
+		id = $(elem).next().attr('data');
 		$(elem).attr('src', '/images/pause.png');
 		if(type === 'album') {
 			DZ.player.playAlbum(id);
