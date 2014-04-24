@@ -2,25 +2,18 @@
 
 <div id='dz-root' style='display:none'></div>
 
-<div class="topbar">
+<div id="navbar">
 	<div class="container">
-		<div class="thirteen columns"><p class="sitename"><a href="/">Momently</a></p></div>
-		<div class="three columns alignright">
-			<button class="topbutton" ONCLICK="window.location.href='/'">Start a new space</button>
-		</div>
-	</div>
-</div>
+		<p class="sitename"><a href="/">Momently.nl</a></p>
+	</div><!-- container -->
+</div><!-- navbar -->
 
-<div class="header" style="background-image: url(images/bg.jpeg);">
-<div class="test">
+<div id="view">
 	<div class="container">
-		<div class="sixteen columns">
-			<p class="memorytitle"><%= memory %></p>
-			<p class="memorysubtitle">Want to contribute to this space? Just send a mail to <a href="mailto:<%= memory %>@momently.nl"><%= memory %>@momently.nl</a>.</p>
-		</div>
-	</div>
-	</div>
-</div>
+		<p class="title"><%= memory %></p>
+		<p class="subtitle">Want to contribute? Mail your content to <a href="mailto:<%= memory %>@momently.nl"><%= memory %>@momently.nl</a></p>
+	</div><!-- container -->
+</div><!-- homepage -->
 
 <div class="contentspace">
 	<div class="container" id='item-list'>

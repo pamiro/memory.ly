@@ -15,8 +15,10 @@
 
 	<% if(items[i].type.indexOf('deezer') > -1) { %>
 		<div class="five columns content">
-			<img src='/images/play.png' width='100%' height='auto' class='playbutton' >
+		<div style="position:relative">
+			<img src='/images/play.png' class='playbutton' >
 			<img src="/images/albumart.png" class='<%= items[i].type %> deezer-item deezer-wait' data='<%= items[i].data %>'>
+		</div>
 			<div class="instagramprofile">
 				<img src="http://images.ak.instagram.com/profiles/profile_6277333_75sq_1373914743.jpg">
 				<p class="name">Martijn van der Weide</p>

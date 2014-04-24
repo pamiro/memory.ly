@@ -1,29 +1,19 @@
 <% layout('layout') -%>
 
-    <div class="topbar">
+<div id="navbar">
 	<div class="container">
-		<div class="sixteen columns"><p class="sitename"><a href="/">Momently</a></p></div>
-	</div> <!-- container -->
-</div> <!-- topbar -->
+		<p class="sitename"><a href="/">Momently.nl</a></p>
+	</div><!-- container -->
+</div><!-- navbar -->
 
-<div class="welcome">
-<div class="test">
+<div id="homepage">
 	<div class="container">
-	<form action="/create" method="post">
-		<div class="sixteen columns centertxt margintopp">
-			<p class="memorytitle">Share your memories of an event with all participants</p>
-			<br><br>
-			<p class="memorysubtitle">Momently collects all the pictures and songs of your friends simply via email.</p>
-			<br><br><br><br>
-			<p class="createnew">Start right now:</p>
-			<br><br>
-		</div>
-		<div class="four columns"> .</div>
-		<div class="eight columns blackbox">
-			<input class="newmemory"  name="memory" type="text" placeholder="yourmemoryname"><p class="adress">@momently.nl</p>
-		</div>
-		<div class="sixteen columns centertxt"><button class="actionbutton" type="submit" value="Create">Create memory</button></div>
-	</div> <!-- container -->
-	</form>
-</div><!-- test -->
-</div><!-- welcome -->
+		<p class="title wow fadeInUp">Create a new memory together</p>
+		<p class="subtitle wow fadeInUp">With memorly you just simply have to mail and here comes a good text</p>
+		<div class="create wow bounceInUp" data-wow-delay="0.5s">
+			<form action="/create" method="post">
+			<input type="text" class="name" name="memory" placeholder="yourname"><p class="adress">@momently.nl</p>
+			</form>
+		</div><!-- create -->
+	</div><!-- container -->
+</div><!-- homepage -->

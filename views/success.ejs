@@ -1,21 +1,16 @@
 <% layout('layout') -%>
 
-<div class="topbar">
+<div id="navbar">
 	<div class="container">
-		<div class="sixteen columns"><p class="sitename"><a href="/">Momently</p></a></div>
-	</div> <!-- container -->
-</div> <!-- topbar -->
+		<p class="sitename"><a href="/">Momently.nl</a></p>
+	</div><!-- container -->
+</div><!-- navbar -->
 
-<div class="success">
-<div class="test">
+<div id="success">
 	<div class="container">
-		<div class="sixteen columns centertxt margintopp">
-			<p class="memorytitle">Congratulations!</p><br><br>
-			<p class="memorysubtitle">Your space <a href='/<%= name %>'><%= name %></a> is ready for you!</p><br>
-			<p class="memorysubtitle">You can now send emails to <a href='mailto:<%= name %>@memorly.nl'><%= name %>@memorly.nl</a> to add things to your space</p>
-			<br><br><br>
-		</div>
-	</div> <!-- container -->
-	</form>
-</div><!-- test -->
-</div><!-- welcome -->
+	<br><br><br>
+		<p class="title wow tada">We've created your memory!</p>
+		<p class="subtitle wow fadeInUp" data-wow-delay="1s">Now it's time to send your first content to <a href='mailto:<%= name %>@memorly.nl'><%= name %>@memorly.nl</a></p>
+		<p class="subtitle wow fadeInUp" data-wow-delay="1.5s" ><a href="/<%= name %>">View your page</a></p>
+	</div><!-- container -->
+</div><!-- homepage -->
