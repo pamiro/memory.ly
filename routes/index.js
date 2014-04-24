@@ -49,14 +49,14 @@ exports.art = function(req, res) {
 	if(req.params.type === 'track') {
 		restClient.get('http://api.deezer.com/track/' + req.params.id.trim(),  function(data, response) {
 			data = JSON.parse(data);
-			res.json( { art: data.album.cover, name: data.title, artist: data.artist.name  } );
+			res.json( { art: data.album.cover + "?size=big", name: data.title, artist: data.artist.name  } );
 		}).on('error',function(err){
 			res.json({ });
 		});
 	} else if(req.params.type === 'album') {
 		restClient.get('http://api.deezer.com/album/' + req.params.id.trim(),  function(data, response) {
 			data = JSON.parse(data);
-			res.json( { art: data.cover, name: data.title, arist: data.artist.name } );
+			res.json( { art: data.cover + "?size=big", name: data.title, arist: data.artist.name } );
 		}).on('error',function(err){
 			res.json({ });
 		});
